@@ -1,0 +1,44 @@
+import java.util.Arrays;
+
+public class Insertionsort {
+
+    public static int insertionSort(int[] arr, boolean ascending) {
+        int steps = 0;
+        int n = arr.length;
+
+        for (int i = 1; i < n; i++) {
+            int key = arr[i];
+            steps++; // storing key
+            int j = i - 1;
+
+            while (j >= 0) {
+                steps++; // comparison
+
+                if ((ascending && arr[j] > key) ||
+                    (!ascending && arr[j] < key)) {
+
+                    arr[j + 1] = arr[j];
+                    steps++; // shifting element
+                    j--;
+                } else {
+                    break;
+                }
+            }
+
+            arr[j + 1] = key;
+            steps++; // inserting key
+        }
+
+        return steps;
+    }
+
+    public static void main(String[] args) {
+
+        int[] arr = {5, 2, 4, 6, 1, 3};
+
+        int steps = insertionSort(arr, true);
+
+        System.out.println("Sorted Array: " + Arrays.toString(arr));
+        System.out.println("Total Steps: " + steps);
+    }
+}
