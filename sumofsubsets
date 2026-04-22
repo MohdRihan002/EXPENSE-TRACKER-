@@ -1,0 +1,30 @@
+public class SumOfSubsets {
+    static int[] set = {2, 4, 6, 8};
+    static int target = 10;
+    static boolean[] include = new boolean[set.length];
+
+    static void subset(int index, int currentSum) {
+        if (currentSum == target) {
+            System.out.print("Subset: ");
+            for (int i = 0; i < set.length; i++) {
+                if (include[i])
+                    System.out.print(set[i] + " ");
+            }
+            System.out.println();
+            return;
+        }
+
+        if (index >= set.length || currentSum > target)
+            return;
+
+        include[index] = true;
+        subset(index + 1, currentSum + set[index]);
+
+        include[index] = false;
+        subset(index + 1, currentSum);
+    }
+
+    public static void main(String[] args) {
+        subset(0, 0);
+    }
+}
